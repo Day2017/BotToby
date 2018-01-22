@@ -2214,7 +2214,7 @@ def bot(op):
 							except:
 								print
 
-            elif "Glist","รายชื่อกลุ่ม" in msg.text:
+            elif "Glist" in msg.text:
                 if msg.from_ in admin:
                         gid = cl.getGroupIdsJoined()
                         h = ""

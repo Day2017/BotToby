@@ -273,8 +273,8 @@ admin=["u16c87102beec3a162c9098c765519630"]
 creator=["u16c87102beec3a162c9098c765519630"]
 wait = {
     'contact':False,
-    'autoJoin':True,
-    'autoCancel':{"on":True,"members":1},
+    'autoJoin':False,
+    'autoCancel':{"on":False,"members":50},
     'leaveRoom':True,
     'timeline':True,
     'autoAdd':True,
@@ -640,7 +640,7 @@ def bot(op):
             return
         if op.type == 13:
             cl.acceptGroupInvitation(op.param1)
-            cl.sendText(op.param1, "Terima Kasih Telah Invite")
+            cl.sendText(op.param1, "💞 ขอบคุณที่เชิญมาครับ 💞")
         if op.type == 5:
             if wait["autoAdd"] == True:
                 cl.findAndAddContactsByMid(op.param1)
@@ -1016,43 +1016,43 @@ def bot(op):
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/translate"]:
+            elif msg.text in ["/translate","/Translate"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,translateMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/bot"]:
+            elif msg.text in ["/bot","/Bot"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,botMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/socmed"]:
+            elif msg.text in ["/socmed","/Socmed"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,socmedMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/protect"]:
+            elif msg.text in ["/protect","/Protect"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,protectMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/setting"]:
+            elif msg.text in ["/setting","/Setting"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,settingMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/steal"]:
+            elif msg.text in ["/steal","/Steal"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,stealMessage)
 					else:
 						cl.sendText(msg.to,helpt)
 #--------------------------------------------------
-            elif msg.text in ["/gift"]:
+            elif msg.text in ["/gift","/Gift"]:
 					if wait["lang"] == "JP":
 						cl.sendText(msg.to,giftMessage)
 					else:
@@ -2194,8 +2194,8 @@ def bot(op):
 							pass
 #-----------------------------------------------
             elif msg.text in ["Kill"]:
-				if msg.from_ in admin:
-					if msg.toType == 2:
+			if msg.from_ in admin:
+				if msg.toType == 2:
 						group = ki.getGroup(msg.to)
 						gMembMids = [contact.mid for contact in group.members]
 						matched_list = []
@@ -2214,7 +2214,7 @@ def bot(op):
 							except:
 								print
 
-            elif "Glist" in msg.text:
+            elif "Glist","รายชื่อกลุ่ม" in msg.text:
                 if msg.from_ in admin:
                         gid = cl.getGroupIdsJoined()
                         h = ""
@@ -2343,8 +2343,8 @@ def bot(op):
 								except:
 									ki.sendText(msg.to,"Berhasil")
 #-----------------------------------------------
-            elif msg.text == "Lurking":
-                    cl.sendText(msg.to, "Lurking Is Starting!! "+ datetime.today().strftime('%H:%M:%S'))
+            elif msg.text == "Lurking","จุด","ตั้งจุด","ตั้งเวลา":
+                    cl.sendText(msg.to, "เริ่มตั้งจุดตรวจสอบแล้ว!! "+ datetime.today().strftime('%H:%M:%S'))
                     try:
                         del wait2['readPoint'][msg.to]
                         del wait2['readMember'][msg.to]
@@ -2357,7 +2357,7 @@ def bot(op):
                     wait2['setTime'][msg.to] = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
                     print wait2
 
-            elif msg.text in ["Lurkers"]:
+            elif msg.text in ["Lurkers","อ่าน","ใครอ่าน"]:
                  if msg.toType == 2:
                     print "\nRead aktif..."
                     if msg.to in wait2['readPoint']:
@@ -2469,19 +2469,19 @@ def bot(op):
                         else:
                             cl.sendText(msg.to,"done")
 #-----------------------------------------------
-            elif "Tob say " in msg.text:
-					bctxt = msg.text.replace("/Tob say ","")
+            elif "Say " in msg.text:
+					bctxt = msg.text.replace("Say ","")
 					cl.sendText(msg.to,(bctxt))
 					ki.sendText(msg.to,(bctxt))
             elif msg.text in ["/Creator"]:
 					msg.contentType = 13
-					msg.contentMetadata = {'mid': "ua7fb5762d5066629323d113e1266e8ca"}
+					msg.contentMetadata = {'mid': "u16c87102beec3a162c9098c765519630"}
 					cl.sendText(msg.to,"MyCreator")
 					ki.sendMessage(msg)
 					msg.contentType = 13
-					msg.contentMetadata = {'mid': "ua7fb5762d5066629323d113e1266e8ca"}
+					msg.contentMetadata = {'mid': "u16c87102beec3a162c9098c765519630"}
 					kk.sendText(msg.to,"MyCreator")
-					ki.sendText(msg.to,"DiAdd ya!!")
+					ki.sendText(msg.to,"เพิ่มเพื่อนไว้สิ!!")
 					ki.sendMessage(msg)
 #-------------Fungsi Creator Finish-----------------#
             elif "Spam " in msg.text:

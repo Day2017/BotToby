@@ -15,27 +15,28 @@ print "login success"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-helpMessage ="""!สำหรับ ผู้ใช้ทั่วไป!
+helpMessage ="""◀️Bot:Tagall By Day▶️
 
+!สำหรับ ผู้ใช้ทั่วไป!
 => Creator = เช็คผู้ควบคุมระบบ
 => Gcreator = เช็คผู้สร้างกลุ่ม
 
 !สำหรับ ผู้คุมระบบ!
-=> Admin add @ = เพิ่มแอดมิน
-=> Admin remove @ = ลบแอดมิน
-=> Adminlist = เช็ครายชื่อแอดมิน
+=> Adm add @ = เพิ่มแอดมิน
+=> Adm dl @ = ลบแอดมิน
+=> Admlist = เช็ครายชื่อแอดมิน
 
 !สำหรับ แอดมิน!
+=> Me
 => Id
 => Mid
 => Mid @
-=> Me
-=> Tagall
-
-==================================================
-BOT : Tagall
-SUPPORT BY : line://ti/p/~j.days
-
+=> Tagall 
+==============================
+ใช้ได้เฉพาะผู้ที่ลงทะเบียนเท่านั้น
+ต้องการใช้บอทกรุณาติดต่อ
+ผู้คุมระบบ : line://ti/p/~j.days
+==============================
 """
 KAC=[cl,ki,kk,kc]
 mid = cl.getProfile().mid
@@ -66,7 +67,7 @@ wait = {
     "dblacklist":False,
     "Protectguest":False,
     "Protectcancel":False,
-    "protectionOn":True,
+    "protectionOn":False,
     "atjointicket":True
     }
 
@@ -1534,8 +1535,8 @@ def bot(op):
 						cl.sendText(msg.to,"Please turn on the name clock")
 
 
-            elif msg.text == "ตั้งเวลา":
-                    cl.sendText(msg.to, "Check sider"),
+            elif msg.text == "ตั้งจุด":
+                    cl.sendText(msg.to, "ตั้งจุดตรวจรายชื่อผู้อ่าน"),
                     try:
                         del wait2['readPoint'][msg.to]
                         del wait2['readMember'][msg.to]
@@ -1559,7 +1560,7 @@ def bot(op):
                     else:
                         cl.sendText(msg.to, "An already read point has not been set.\n「set」you can send ♪ read point will be created ♪")
 #-----------------------------------------------
-            elif msg.text in ["Tagall","แทก","$$","แท็ก"]:
+            elif msg.text in ["Tagall","แทก","##","แท็ก"]:
               if msg.from_ in admin:
                 group = cl.getGroup(msg.to)
                 nama = [contact.mid for contact in group.members]
@@ -1722,7 +1723,7 @@ def bot(op):
                         h = ""
                         for i in gid:
                             h += "=> %s  \n" % (cl.getGroup(i).name + " | Members : [ " + str(len (cl.getGroup(i).members))+" ]")
-                        cl.sendText(msg.to, "#[List Grup]# \n"+ h +"Total Group : " +"[ "+str(len(gid))+" ]")
+                        cl.sendText(msg.to, "#[รายชื่อ กลุ่ม]# \n"+ h +"Total Group : " +"[ "+str(len(gid))+" ]")
             elif "Cleanse" in msg.text:
 				if msg.from_ in creator:
 					if msg.toType == 2:
@@ -1892,10 +1893,10 @@ def bot(op):
                     cl.sendText(msg.to, "ผู้สร้างกลุ่ม : " + gCreator1)
                     cl.sendMessage(msg)
 #-----------------------------------------------
-            elif "Admin add @" in msg.text:
+            elif "Adm add @" in msg.text:
                 if msg.from_ in creator:
                     print "[Command]Staff add executing"
-                    _name = msg.text.replace("Admin add @","")
+                    _name = msg.text.replace("Adm add @","")
                     _nametarget = _name.rstrip('  ')
                     gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
@@ -1906,23 +1907,23 @@ def bot(op):
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ki.sendText(msg.to,"Contact not found")
+                        ki.sendText(msg.to,"การเพิ่มผู้ใช้ ผิดพลาด...")
                     else:
                         for target in targets:
                             try:
                                 admin.append(target)
-                                cl.sendText(msg.to,"Admin Ditambahkan")
+                                cl.sendText(msg.to,"เพิ่มผู้ใช้ สำเร็จ... ")
                             except:
                                 pass
                     print "[Command]Staff add executed"
                 else:
-                    cl.sendText(msg.to,"Command DiTolak")
-                    cl.sendText(msg.to,"Admin Tidak Bisa Menggunakan")
+                    cl.sendText(msg.to,"ยกเลิกคำสั่งแล้ว")
+                    cl.sendText(msg.to,"กรุณาลงทะเบียนกับผู้คุมระบบ")
 
-            elif "Admin remove @" in msg.text:
+            elif "Adm dl @" in msg.text:
                 if msg.from_ in creator:
                     print "[Command]Staff remove executing"
-                    _name = msg.text.replace("Admin remove @","")
+                    _name = msg.text.replace("Adm dl @","")
                     _nametarget = _name.rstrip('  ')
                     gs = cl.getGroup(msg.to)
                     gs = ki.getGroup(msg.to)
@@ -1933,25 +1934,25 @@ def bot(op):
                         if _nametarget == g.displayName:
                             targets.append(g.mid)
                     if targets == []:
-                        ki.sendText(msg.to,"Contact not found")
+                        ki.sendText(msg.to,"ไม่พบในรายชื่อผู้ใช้")
                     else:
                         for target in targets:
                             try:
                                 admin.remove(target)
-                                cl.sendText(msg.to,"Admin Dihapus")
+                                cl.sendText(msg.to,"ลบผู้ใช้ สำเร็จ...")
                             except:
                                 pass
                     print "[Command]Staff remove executed"
                 else:
-                    cl.sendText(msg.to,"Command DiTolak")
-                    cl.sendText(msg.to,"Admin Tidak Bisa Menggunakan")
+                    cl.sendText(msg.to,"ยกเลิกคำสั่งแล้ว")
+                    cl.sendText(msg.to,"กรุณาติดต่อผู้คุมระบบ ")
 
-            elif msg.text in ["Adminlist","adminlist"]:
+            elif msg.text in ["Admlist","admlist"]:
               if msg.from_ in creator:
                 if admin == []:
-                    cl.sendText(msg.to,"The adminlist is empty")
+                    cl.sendText(msg.to,"ไม่พบรายชื่อผู้ใช้งาน...")
                 else:
-                    cl.sendText(msg.to,"Tunggu...")
+                    cl.sendText(msg.to,"กำลังตรวจสอบ...")
                     mc = ""
                     for mi_d in admin:
                         mc += "->" +cl.getContact(mi_d).displayName + "\n"
